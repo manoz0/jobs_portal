@@ -3,9 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Portal</title>
-<link rel="stylesheet" href="./login.html">
+<title>Jobs Portal</title>
+</head>
+<body>
 
+<!-- NAVBAR -->
+<nav>
+    <h2>JobsPortal</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#jobs">Jobs</a></li>
+        <li><a href="#review">Review</a></li>
+        <a href="./login.html"><button>LOGIN</button></a>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <h1>Find Your Dream Job</h1>
+    <p>Search 10,000+ jobs from top companies</p>
+</section>
+
+<!-- FILTER SECTION (Like Naukri) -->
+<div class="filter-section">
+    <input type="text" id="roleFilter" placeholder="Search Role (e.g. Developer)">
+    <select id="locationFilter">
+        <option value="">Select Location</option>
+        <option>Chennai</option>
+        <option>Bangalore</option>
+        <option>Hyderabad</option>
+        <option>Pune</option>
+        <option>Mumbai</option>
+    </select>
+    <button onclick="filterJobs()">Search</button>
+</div>
+
+<!-- JOBS -->
+<section class="jobs" id="jobs">
+    <div class="slider">
+
+        <!-- Original Cards -->
+        <div class="job-card">
+            <h3>Frontend Developer</h3>
+            <p>Company: Infosys</p>
+            <p>Location: Chennai</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Backend Developer</h3>
+            <p>Company: TCS</p>
+            <p>Location: Bangalore</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Data Analyst</h3>
+            <p>Company: Wipro</p>
+            <p>Location: Hyderabad</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>UI/UX Designer</h3>
+            <p>Company: Zoho</p>
+            <p>Location: Pune</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Python Developer</h3>
+            <p>Company: HCL</p>
+            <p>Location: Mumbai</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <!-- Duplicate Cards for Infinite Loop -->
+        <div class="job-card">
+            <h3>Frontend Developer</h3>
+            <p>Company: Infosys</p>
+            <p>Location: Chennai</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Backend Developer</h3>
+            <p>Company: TCS</p>
+            <p>Location: Bangalore</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Data Analyst</h3>
+            <p>Company: Wipro</p>
+            <p>Location: Hyderabad</p>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+    </div>
+</section>
+
+/* Perfect Infinite Animation */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+</style>
+
+<!-- REVIEW -->
+<section class="review-section" id="review">
+<h2>Share Your Review</h2>
+
+<form class="review-form">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="4" placeholder="Write your review" required></textarea>
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<footer>
+© 2026 JobPortal | All Rights Reserved
+</footer>
+
+<script>
+function filterJobs(){
+    let role = document.getElementById("roleFilter").value.toLowerCase();
+    let location = document.getElementById("locationFilter").value;
+    let jobs = document.querySelectorAll(".job-card");
+
+    jobs.forEach(job=>{
+        let jobRole = job.getAttribute("data-role");
+        let jobLocation = job.getAttribute("data-location");
+
+        if((jobRole.includes(role) || role==="") &&
+           (jobLocation===location || location==="")){
+            job.style.display="block";
+        } else {
+            job.style.display="none";
+        }
+    });
+}
+</script>
 <style>
 *{
     margin:0;
@@ -218,106 +361,6 @@ footer{
     text-align:center;
     padding:15px;
 }
-</style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav>
-    <h2>JobsPortal</h2>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#jobs">Jobs</a></li>
-        <li><a href="#review">Review</a></li>
-        <a href="./login.html"><button>LOGIN</button></a>
-    </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-    <h1>Find Your Dream Job</h1>
-    <p>Search 10,000+ jobs from top companies</p>
-</section>
-
-<!-- FILTER SECTION (Like Naukri) -->
-<div class="filter-section">
-    <input type="text" id="roleFilter" placeholder="Search Role (e.g. Developer)">
-    <select id="locationFilter">
-        <option value="">Select Location</option>
-        <option>Chennai</option>
-        <option>Bangalore</option>
-        <option>Hyderabad</option>
-        <option>Pune</option>
-        <option>Mumbai</option>
-    </select>
-    <button onclick="filterJobs()">Search</button>
-</div>
-
-<!-- JOBS -->
-<section class="jobs" id="jobs">
-    <div class="slider">
-
-        <!-- Original Cards -->
-        <div class="job-card">
-            <h3>Frontend Developer</h3>
-            <p>Company: Infosys</p>
-            <p>Location: Chennai</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>Backend Developer</h3>
-            <p>Company: TCS</p>
-            <p>Location: Bangalore</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>Data Analyst</h3>
-            <p>Company: Wipro</p>
-            <p>Location: Hyderabad</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>UI/UX Designer</h3>
-            <p>Company: Zoho</p>
-            <p>Location: Pune</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>Python Developer</h3>
-            <p>Company: HCL</p>
-            <p>Location: Mumbai</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <!-- Duplicate Cards for Infinite Loop -->
-        <div class="job-card">
-            <h3>Frontend Developer</h3>
-            <p>Company: Infosys</p>
-            <p>Location: Chennai</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>Backend Developer</h3>
-            <p>Company: TCS</p>
-            <p>Location: Bangalore</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-        <div class="job-card">
-            <h3>Data Analyst</h3>
-            <p>Company: Wipro</p>
-            <p>Location: Hyderabad</p>
-            <button class="apply-btn">Apply Now</button>
-        </div>
-
-    </div>
-</section>
-<style>
 /* home section */
 .hero{
     height: 70vh;
@@ -364,52 +407,7 @@ footer{
     background: #0097a7;
 }
 
-/* Perfect Infinite Animation */
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
 </style>
-
-<!-- REVIEW -->
-<section class="review-section" id="review">
-<h2>Share Your Review</h2>
-
-<form class="review-form">
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea rows="4" placeholder="Write your review" required></textarea>
-<button type="submit">Submit</button>
-</form>
-</section>
-
-<footer>
-© 2026 JobPortal | All Rights Reserved
-</footer>
-
-<script>
-function filterJobs(){
-    let role = document.getElementById("roleFilter").value.toLowerCase();
-    let location = document.getElementById("locationFilter").value;
-    let jobs = document.querySelectorAll(".job-card");
-
-    jobs.forEach(job=>{
-        let jobRole = job.getAttribute("data-role");
-        let jobLocation = job.getAttribute("data-location");
-
-        if((jobRole.includes(role) || role==="") &&
-           (jobLocation===location || location==="")){
-            job.style.display="block";
-        } else {
-            job.style.display="none";
-        }
-    });
-}
-</script>
 
 </body>
 </html>
