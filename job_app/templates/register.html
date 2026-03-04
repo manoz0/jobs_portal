@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Job Portal</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0f7ff, #ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ================= FORM BOX ================= */
+.form-box{
+    background:#ffffff;
+    padding:45px;
+    width:420px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0, 170, 255, 0.2);
+    animation:fadeIn 0.8s ease-in-out;
+    border-top:5px solid #00aaff;
+}
+
+/* ================= TITLE ================= */
+.form-box h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#007acc;
+    font-weight:600;
+}
+
+/* ================= INPUT FIELDS ================= */
+.form-box .input-group{
+    margin-bottom:18px;
+}
+
+.form-box label{
+    display:block;
+    margin-bottom:6px;
+    color:#555;
+    font-size:14px;
+}
+
+.form-box input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d0eaff;
+    outline:none;
+    border-radius:8px;
+    background:#f9fcff;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.form-box input:focus{
+    border:1px solid #00aaff;
+    box-shadow:0 0 8px rgba(0,170,255,0.3);
+    background:#ffffff;
+}
+
+/* ================= BUTTON ================= */
+.form-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#00aaff;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.form-box button:hover{
+    background:#007acc;
+    transform:translateY(-2px);
+}
+
+/* ================= LINK ================= */
+.form-box p{
+    text-align:center;
+    margin-top:18px;
+    color:#555;
+    font-size:14px;
+}
+
+.form-box a{
+    color:#007acc;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.form-box a:hover{
+    text-decoration:underline;
+}
+
+/* ================= MESSAGE STYLES ================= */
+.error{
+    background:#ffe5e5;
+    color:#cc0000;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:6px;
+    text-align:center;
+}
+
+.success{
+    background:#e6f9f0;
+    color:#008a4e;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:6px;
+    text-align:center;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:480px){
+    .form-box{
+        width:90%;
+        padding:30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="form-box">
+        <h2>Create an Account</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <!-- ✅ Email Added -->
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" name="password2" required>
+            </div>
+
+            <button type="submit">Register</button>
+
+            <p>
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
