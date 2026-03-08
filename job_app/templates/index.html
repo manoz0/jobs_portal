@@ -1,240 +1,489 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jobs Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <!-- <link rel="stylesheet" href="./login.html"> -->
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-    body { background:white; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-    /* ================= NAVBAR ================= */
-    nav {
-      background:#0f172a;
-      padding:15px 60px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
-    nav h2 { color:#38bdf8; }
-    nav ul { list-style:none; display:flex; gap:30px; align-items:center; }
-    nav ul li a { text-decoration:none; color:white; font-weight:500; position:relative; padding-bottom:5px; }
-    nav ul li a::after {
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:0%;
-      height:2px;
-      background:#38bdf8;
-      transition:0.3s;
-    }
-    nav ul li a:hover::after { width:100%; }
-    .login-btn { padding:8px 18px; border:none; background:#38bdf8; color:white; border-radius:5px; cursor:pointer; }
-    .login-btn:hover { background:#0284c7; }
+        body {
+            background: #f4f6f9;
+        }
 
-    /* ================= HERO ================= */
-    .hero {
-      text-align:center;
-      padding:100px 20px;
-      background:linear-gradient(to right,#0f172a,#1e293b);
-      color:white;
-      height: 70vh;
-    }
-    .hero h1 { font-size:40px; }
-    .hero p { margin-top:10px; font-size:18px; color:#cbd5e1; }
+        /* ================= NAVBAR ================= */
+        nav {
+            background: #0f172a;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* ================= FILTER SECTION ================= */
-    .filter-section {
-      background:white;
-      padding:30px;
-      margin:-40px auto 40px;
-      width:90%;
-      max-width:1000px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      border-radius:10px;
-      display:flex;
-      gap:15px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    .filter-section input,
-    .filter-section select {
-      padding:10px;
-      border:1px solid #ccc;
-      border-radius:5px;
-      min-width:200px;
-    }
-    .filter-section button {
-      padding:10px 20px;
-      border:none;
-      background:#0f172a;
-      color:white;
-      border-radius:5px;
-      cursor:pointer;
-    }
+        nav h2 {
+            color: #38bdf8;
+        }
 
-    /* ================= JOB SECTION ================= */
-    .jobs {
-      overflow:hidden;
-      background: #121212;
-      padding: 60px 20px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-    }
-    .job-card {
-      min-width: 260px;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 12px;
-      color: white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-    }
-    .job-card:hover { transform: scale(1.05); }
-    .job-card h3 { color:#00bcd4; }
-    .job-card p { font-size:14px; margin:6px 0; color:#cbd5e1; }
-    .apply-btn {
-      margin-top: 10px;
-      padding: 8px 15px;
-      border: none;
-      background: #00bcd4;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .apply-btn:hover { background: #0097a7; }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-    /* ================= REVIEW SECTION ================= */
-    .review-section {
-      background:#1e293b;
-      padding:60px 20px;
-      color:white;
-      text-align:center;
-    }
-    .review-section h2 { margin-bottom:20px; }
-    .review-form {
-      max-width:500px;
-      margin:auto;
-      display:flex;
-      flex-direction:column;
-      gap:15px;
-    }
-    .review-form input,
-    .review-form textarea {
-      padding:10px;
-      border:none;
-      border-radius:5px;
-    }
-    .review-form button {
-      padding:10px;
-      border:none;
-      background:#38bdf8;
-      color:white;
-      border-radius:5px;
-      cursor:pointer;
-    }
-    .review-form button:hover { background:#0284c7; }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
 
-    /* ================= FOOTER ================= */
-    footer {
-      background:#0f172a;
-      color:white;
-      text-align:center;
-      padding:15px;
-    }
-  </style>
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background: #38bdf8;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            background: #38bdf8;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0284c7;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            text-align: center;
+            padding: 20px 10px;
+            /* background: linear-gradient(to right, #0f172a, #1e293b); */
+            background-image: url(https://bbcincorp.com/wp-content/uploads/2021/02/relevant-entities-under-es-law.jpg);
+            background-size:cover;
+            color: white;
+            height: 100vh;
+        }
+        .home{
+            background: transparent;
+        }
+        .hero1 {
+            text-align: center;
+            justify-content: top;
+            padding: 90px 10px;
+            /* background: linear-gradient(to right, #0f172a, #1e293b); */
+            background-image: url(https://image.shutterstock.com/image-photo/internet-business-technology-network-concept-260nw-2108234210.jpg);            
+            background-size:cover;
+            color: white;
+            height: 70vh;
+        }
+        .home1 {
+            background: transparent;
+            justify-content: top;
+            text-align: start;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        /* ================= FILTER SECTION ================= */
+        .filter-section {
+            background: transparent(70%);
+            /* padding: 30px; */
+            margin: -40px auto 40px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+        .filter-section input,
+        .filter-section select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+
+        .filter-section button {
+            padding: 10px 20px;
+            border: none;
+            background: #0f172a;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* ================= JOB SECTION ================= */
+        .jobs {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            background-color: white;
+            
+        }
+
+        .job-card {
+            /* background:white; */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+            border: 3px solid #0284c7;
+
+        }
+
+        .job-card:hover {
+            /* transform: translateY(-5px); */
+            transform:translateY(-12px);
+            box-shadow:0 0 30px var(--primary);
+        
+        }
+
+        .job-card h3 {
+            color: rgb(147, 212, 236);
+        }
+
+        .job-card p {
+            font-size: 14px;
+            margin: 6px 0;
+            color:white ;
+        }
+        .jobs i{
+        font-size:50px;
+        color:var(--primary);
+        }
+
+        .apply-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            background: #38bdf8;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #0284c7;
+        }
+
+        /* ================= REVIEW SECTION ================= */
+        .review-section {
+            background: #0f172a;
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .review-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .review-form {
+            max-width: 500px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .review-form input,
+        .review-form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .review-form button {
+            padding: 10px;
+            border: none;
+            background: #38bdf8;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .review-form button:hover {
+            background: #0284c7;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <h2>JobsPortal</h2>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#jobs">Jobs</a></li>
-    <li><a href="#review">Review</a></li>
-    <li><a href="/login/"><button class="login-btn">LOGIN</button></a></li>
-  </ul>
-</nav>
+    <!-- NAVBAR -->
+    <nav>
+        <h2>Career 360</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#jobs">Jobs</a></li>
+            <li><a href="#review">Review</a></li>
+            <a href="{% url 'login' %}"><button class="btn">LOGIN</button></a>
+        </ul>
+    </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <h1>Find Your Dream Job</h1>
-  <p>Search 10,000+ jobs from top companies</p>
-</section>
+    <!-- HERO -->
+    <div class="hero" id="home">
+        <h1>Find Your Dream Job</h1>
+        <p>Search 10,000+ jobs from" top companies</p>
+    </div>
+    
+     <!-- FILTER SECTION (Like Naukri) -->
+    <div class="hero1" id="home1">
+     <div class="filter-section">
+            <input type="text" id="roleFilter" placeholder="Search Role (e.g. Developer)">
+            <select id="locationFilter">
+            <option value="">Select Location</option>
+            <option>Chennai</option>
+            <option>Bangalore</option>
+            <option>Hyderabad</option>
+            <option>Pune</option>
+            <option>Mumbai</option>
+             </select>
+            <button onclick="filterJobs()">Search</button>
+    </div></div>
 
-<!-- FILTER SECTION -->
-<div class="filter-section">
-  <input type="text" id="roleFilter" placeholder="Search Role (e.g. Developer)">
-  <select id="locationFilter">
-    <option value="">Select Location</option>
-    <option>Chennai</option>
-    <option>Bangalore</option>
-    <option>Hyderabad</option>
-    <option>Pune</option>
-    <option>Mumbai</option>
-  </select>
-  <button onclick="filterJobs()">Search</button>
-</div>
+    <!-- JOBS -->
+    <section class="jobs" id="jobs">
+        <div class="slider">
 
-<!-- JOBS -->
-<section class="jobs" id="jobs">
-  {% for job in jobs %}
-  <div class="job-card" data-role="{{ job.role|lower }}" data-location="{{ job.location }}">
-    <h3>{{ job.role }}</h3>
-    <p>Company: {{ job.company }}</p>
-    <p>Location: {{ job.location }}</p>
-    <button class="apply-btn">Apply Now</button>
-  </div>
-  {% empty %}
-  <p style="color:white; text-align:center; grid-column:1/-1;">No jobs found.</p>
-  <a href="{% url 'login' %}"><button class="login-btn">LOGIN</button></a>
-  {% endfor %}
-</section>
+            <!-- Original Cards -->
+            <div class="job-card">
+                <h3>Frontend Developer</h3>
+                <p><strong>Company:</strong> Infosys</p>
+                <p><strong>Location</strong>Chennai</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                  <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
 
-<!-- REVIEW SECTION -->
-<section class="review-section" id="review">
-  <h2>Share Your Review</h2>
-  <form class="review-form">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea rows="4" placeholder="Write your review" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
-</section>
+            <div class="job-card">
+                <h3>Backend Developer</h3>
+                <p><strong>Company:</strong> TCS</p>
+                <p><strong>Location:</strong> Bangalore</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                   <p><strong>Openings:</strong>2</p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                
+                <button class="apply-btn">Apply Now</button>
+            </div>
 
-<!-- FOOTER -->
-<footer>
-  © 2026 JobPortal | All Rights Reserved
-</footer>
+            <div class="job-card">
+                <h3>Data Analyst</h3>
+                <p><strong>Company:</strong> Accenture</p>
+                <p><strong>Location:</strong> Hyderabad</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                  <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
 
-<!-- JS Filter -->
-<script>
-function filterJobs(){
-    let role = document.getElementById("roleFilter").value.toLowerCase();
-    let location = document.getElementById("locationFilter").value;
-    let jobs = document.querySelectorAll(".job-card");
+            <div class="job-card">
+                <h3>UI/UX Designer</h3>
+                <p><strong>Company:</strong> Wipro</p>
+                <p><strong>Location:</strong> Pune</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+               <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
 
-    jobs.forEach(job=>{
-        let jobRole = job.getAttribute("data-role");
-        let jobLocation = job.getAttribute("data-location");
+            <div class="job-card">
+                <h3>Python Developer</h3>
+                <p><strong>Company:</strong> HCL</p>
+                <p><strong>Location</strong>Mumbai</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                 <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
 
-        if((jobRole.includes(role) || role==="") &&
-           (jobLocation===location || location==="")){
-            job.style.display="block";
-        } else {
-            job.style.display="none";
+            <!-- Duplicate Cards for Infinite Loop -->
+            <div class="job-card">
+                <h3>Frontend Developer</h3>
+                <p><strong>Company:</strong> Cognizant</p>
+                <p><strong>Location:</strong> Chennai</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                 <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
+
+            <div class="job-card">
+                <h3>Backend Developer</h3>
+                <p><strong>Company:</strong>HCL </p>
+                <p><strong>Location:</strong> Bangalore</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                  <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
+
+            <div class="job-card">
+                <h3>Data Analyst</h3>
+                <p><strong>Company:</strong> Infosys</p>
+                <p><strong>Location:</strong> Hyderabad</p>
+                <p><strong>Salary</strong> 4LPA - 7LPA</p>
+                <p><strong>Experience-</strong>0 to 2 years </p>
+                <p><strong>Job Type:</strong> Full-Time</p>
+                 <p><strong>Openings:</strong>2</p>
+                <button class="apply-btn">Apply Now</button>
+            </div>
+
+        </div>
+    </section>
+    <style>
+        /* home section */
+        .hero {
+            height: 70vh;
         }
-    });
-}
-</script>
+
+        .jobs {
+            overflow: hidden;
+            background:black;
+            padding: 60px 0;
+            height: 70vh;
+        }
+
+        .slider {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: slide 20s linear infinite;
+        }
+
+        .job-card {
+            min-width: 260px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: scale(1.05);
+        }
+
+        .apply-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            background: #00bcd4;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #0097a7;
+        }
+        
+
+
+        /* Perfect Infinite Animation */
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+    <!-- REVIEW -->
+    <section class="review-section" id="review">
+        <h2>Share Your Review</h2>
+
+        <form class="review-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Write your review" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2026 JobPortal | All Rights Reserved
+    </footer>
+
+    <script>
+        function filterJobs() {
+            let role = document.getElementById("roleFilter").value.toLowerCase();
+            let location = document.getElementById("locationFilter").value;
+            let jobs = document.querySelectorAll(".job-card");
+
+            jobs.forEach(job => {
+                let jobRole = job.getAttribute("data-role");
+                let jobLocation = job.getAttribute("data-location");
+
+                if ((jobRole.includes(role) || role === "") &&
+                    (jobLocation === location || location === "")) {
+                    job.style.display = "block";
+                } else {
+                    job.style.display = "none";
+                }
+            });
+        }
+    </script>
 
 </body>
+
 </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Job</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f5f6fa;
+}
+
+.form-box{
+width:400px;
+margin:100px auto;
+background:white;
+padding:30px;
+box-shadow:0 2px 10px rgba(36, 102, 243, 0.1);
+border-radius:8px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#033054;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form class="form-box" method="POST">
+{% csrf_token %}
+<h2>Add / Update Job</h2>
+
+<input type="text"  placeholder="Job Title"name="title">
+<input type="text"  placeholder="Company" name="company">
+<input type="text"  placeholder="Location"name="location">
+<input type="text"  placeholder="Salary (LPA)"name="salary">
+
+<input type="submit">
+
+</form>
+
+<!-- <script>
+
+let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+let editIndex = localStorage.getItem("editIndex");
+
+if(editIndex !== null){
+
+let job = jobs[editIndex];
+
+document.getElementById("title").value = job.title;
+document.getElementById("company").value = job.company;
+document.getElementById("location").value = job.location;
+document.getElementById("salary").value = job.salary;
+
+}
+
+function saveJob(){
+
+let title=document.getElementById("title").value;
+let company=document.getElementById("company").value;
+let location=document.getElementById("location").value;
+let salary=document.getElementById("salary").value;
+
+let job={
+title,
+company,
+location,
+salary
+};
+
+if(editIndex !== null){
+
+jobs[editIndex]=job;
+
+localStorage.removeItem("editIndex");
+
+}else{
+
+jobs.push(job);
+
+}
+
+localStorage.setItem("jobs",JSON.stringify(jobs));
+
+window.location.href="dashboard.html";
+
+}
+
+</script> -->
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:#f5f6fa;
+}
+
+.navbar{
+background:#2f3640;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.container{
+width:85%;
+margin:auto;
+margin-top:30px;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+.add-btn{
+background:#27ae60;
+color:white;
+padding:10px 15px;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+th{
+background:#273c75;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+button{
+padding:6px 10px;
+border:none;
+cursor:pointer;
+border-radius:4px;
+}
+
+.edit{
+background:#3498db;
+color:white;
+}
+
+.delete{
+background:#e74c3c;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<h2>Job Portal Admin</h2>
+
+<div>
+<a href="{% url 'addjob' %}">Add Job</a>
+<a href="{% url 'login' %}">Logout</a>
+</div>
+</div>
+
+<div class="container">
+
+<h2>Manage Jobs</h2>
+
+<table id="jobTable">
+
+<tr>
+<th>Job Title</th>
+<th>Company</th>
+<th>Location</th>
+<th>Salary</th>
+<th>Actions</th>
+</tr>
+{% for Job in jobs %}
+<tr>
+    <th>{{Job.title}}</th>
+    <th>{{Job.company}}</th>
+    <th>{{Job.location}}</th>
+    <th>{{Job.salary}}</th>
+    <th><a href="{% url 'delete_job' Job.id %}">delete</a>
+        <a href="{% url 'edit_job' Job.id %}">update</a>
+    </th>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+<!-- <script>
+
+let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+function displayJobs(){
+
+let table = document.getElementById("jobTable");
+
+table.innerHTML=`
+<tr>
+<th>Job Title</th>
+<th>Company</th>
+<th>Location</th>
+<th>Salary</th>
+<th>Actions</th>
+</tr>
+`;
+
+jobs.forEach((job,index)=>{
+
+table.innerHTML += `
+<tr>
+
+<td>${job.title}</td>
+<td>${job.company}</td>
+<td>${job.location}</td>
+<td>${job.salary}</td>
+
+<td>
+<button class="edit" onclick="editJob(${index})">Edit</button>
+<button class="delete" onclick="deleteJob(${index})">Delete</button>
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
+function deleteJob(index){
+
+jobs.splice(index,1);
+
+localStorage.setItem("jobs",JSON.stringify(jobs));
+
+displayJobs();
+
+}
+
+function editJob(index){
+
+localStorage.setItem("editIndex",index);
+
+window.location.href="addjob.html";
+
+}
+
+displayJobs();
+
+</script> -->
+
+</body>
+</html>
